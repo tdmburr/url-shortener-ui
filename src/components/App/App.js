@@ -26,9 +26,7 @@ class App extends Component {
   };
 
   createUrl = url => {
-    this.setState(prevState => ({
-      urls: [...prevState.urls, url]
-    }));
+    this.setState({ urls: [...this.state.urls, url] });
   }
 
   render() {

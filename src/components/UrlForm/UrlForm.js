@@ -31,6 +31,13 @@ class UrlForm extends Component {
     this.clearInputs();
 
     postUrls(url)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Failed to create URL');
+      }
+    })
     .then(data => {
         this.props.createUrl(data);
         this.clearInputs();
