@@ -24,9 +24,9 @@ describe('URL Shortener Dashboard', () => {
 
   it('When a user fills out the form, the information is reflected in the input fields', () => {
     cy.get('form')
-    .find('input[name="title"]').type('text')
+    .find('input[name="title"]').type('text').should('have.value', 'text')
     cy.get('form')
-    .find('input[name="urlToShorten"]').type('https://www.google.com')
+    .find('input[name="urlToShorten"]').type('https://www.google.com').should('have.value', 'https://www.google.com')
   })
   
   it('When a user fills out and submits the form, the new shortened URL is rendered', () => {
@@ -40,9 +40,9 @@ describe('URL Shortener Dashboard', () => {
     cy.visit('http://localhost:3000')
 
     cy.get('form')
-    .find('input[name="title"]').type('Awesomer photo')
+    .find('input[name="title"]').type('Awesomer photo').should('have.value', 'Awesomer photo')
     cy.get('form')
-    .find('input[name="urlToShorten"]').type('https://www.google.com')
+    .find('input[name="urlToShorten"]').type('https://www.google.com').should('have.value', 'https://www.google.com')
     cy.get('button')
     .contains('Shorten Please!').click().wait(2000)
 
