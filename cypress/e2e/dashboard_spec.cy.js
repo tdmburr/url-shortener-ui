@@ -29,6 +29,30 @@ describe('URL Shortener Dashboard', () => {
     .find('input[name="urlToShorten"]').type('https://www.google.com')
   })
   
-  
+  it('When a user fills out and submits the form, the new shortened URL is rendered', () => {
+    
+    cy.intercept('GET', 'http://localhost:3001/api/v1/*', {
+      fixture: 'urlStub.json'
+    })
+    cy.intercept('POST', 'http://localhost:3001/api/v1/urls', {
+      fixture: 'postStub.json'
+    })
+    cy.visit('http://localhost:3000')
+
+    cy.get('form')
+    .find('input[name="title"]').type('Awesomer photo')
+    cy.get('form')
+    .find('input[name="urlToShorten"]').type('https://www.google.com')
+    cy.get('button')
+    .contains('Shorten Please!').click().wait(2000)
+
+    cy.get('.url')
+      .contains('Awesomer photo')
+    cy.get('.url')
+      .contains('https://www.google.com')
+    cy.get('.url')
+      .contains('http://localhost:3001/useshorturl/2')    
+
+  })
 })
 

@@ -1,3 +1,8 @@
+section {
+  display: flex;
+  flex-direction: column;
+}
+
 .url {
   border: 1px solid black;
   display: inline-block;
