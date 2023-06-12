@@ -1,4 +1,11 @@
-export const getUrls = () => {
+const getUrls = () => {
   return fetch('http://localhost:3001/api/v1/urls')
-      .then(response => response.json())
-}
+    .then(res => {
+      if (!res.ok) {
+        throw Error("Failed to get urls");
+      }
+      return res.json();
+    })
+};
+
+export { getUrls }
