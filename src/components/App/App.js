@@ -25,12 +25,18 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  createUrl = url => {
+    this.setState(prevState => ({
+      urls: [...prevState.urls, url]
+    }));
+  }
+
   render() {
     return (
       <main className="App">
         <header>
           <h1>URL Shortener</h1>
-          <UrlForm />
+          <UrlForm createUrl={this.createUrl}/>
         </header>
 
         <UrlContainer urls={this.state.urls} />
